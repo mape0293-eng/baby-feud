@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Family Feud: Parenting & Baby Edition</title>
+    <title>Baby Feud</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
@@ -12,12 +12,14 @@
         /* 1. CORE STYLING & VARIABLES */
         :root {
             --sakura-pink: #FFB7C5;
+            --petal-gradient: linear-gradient(135deg, #FFB7C5 0%, #ffcbd5 100%);
             --pastel-pink: #FFF0F5;
             --deep-cherry: #8E244D;
             --gold-accent: #D4AF37;
             --text-dark: #4A4A4A;
             --white-glass: rgba(255, 255, 255, 0.85);
             --shadow-soft: 0 10px 30px rgba(142, 36, 77, 0.1);
+            --strike-red: #ff4d4d;
         }
 
         * { box-sizing: border-box; }
@@ -37,16 +39,25 @@
             color: var(--text-dark);
         }
 
-        /* 2. SAKURA BACKGROUND DECORATION */
-        .sakura-overlay {
+        /* 2. ENHANCED SAKURA SVG DECORATION */
+        .flower-bg {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('http://googleusercontent.com/image_collection/image_retrieval/15076032150161571870');
-            background-size: cover;
-            opacity: 0.15;
-            pointer-events: none;
+            width: 500px;
+            height: 500px;
+            opacity: 0.6;
             z-index: 0;
+            pointer-events: none;
+            filter: drop-shadow(0 8px 15px rgba(142, 36, 77, 0.15));
+            /* Inline Detailed Sakura SVG */
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3cdefs%3e%3clinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3e%3cstop offset='0%25' style='stop-color:%23FFB7C5;stop-opacity:1' /%3e%3cstop offset='100%25' style='stop-color:%23ffdee5;stop-opacity:1' /%3e%3c/linearGradient%3e%3c/defs%3e%3cg transform='translate(50,50)'%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(0)'/%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(72)'/%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(144)'/%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(216)'/%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(288)'/%3e%3cg fill='%238E244D' opacity='0.4'%3e%3ccircle cx='0' cy='0' r='4'/%3e%3cline x1='0' y1='0' x2='0' y2='-12' stroke='%238E244D' stroke-width='0.5'/%3e%3cline x1='0' y1='0' x2='10' y2='-6' stroke='%238E244D' stroke-width='0.5'/%3e%3cline x1='0' y1='0' x2='8' y2='8' stroke='%238E244D' stroke-width='0.5'/%3e%3cline x1='0' y1='0' x2='-8' y2='8' stroke='%238E244D' stroke-width='0.5'/%3e%3cline x1='0' y1='0' x2='-10' y2='-6' stroke='%238E244D' stroke-width='0.5'/%3e%3c/g%3e%3c/g%3e%3c/svg%3e");
+            background-size: contain;
+            background-repeat: no-repeat;
         }
+        
+        .flower-tl { top: -120px; left: -120px; transform: rotate(-10deg); }
+        .flower-br { bottom: -150px; right: -150px; transform: rotate(170deg); width: 600px; height: 600px; }
+        .flower-tr { top: 40px; right: -80px; width: 300px; height: 300px; opacity: 0.3; }
+
 
         .falling-petals {
             position: absolute;
@@ -86,6 +97,18 @@
             justify-content: center;
         }
 
+        .question-box {
+            background: var(--white-glass);
+            border-left: 8px solid var(--deep-cherry);
+            padding: 15px 30px;
+            margin-bottom: 25px;
+            font-size: 26px;
+            font-style: italic;
+            box-shadow: var(--shadow-soft);
+            border-radius: 4px;
+            backdrop-filter: blur(8px);
+        }
+
         /* 4. FAMILY FEUD BOARD STYLING (INTERACTIVE) */
         .feud-board {
             width: 100%;
@@ -106,44 +129,31 @@
             box-shadow: var(--shadow-soft);
             position: relative;
             cursor: pointer;
-            overflow: visible; /* To allow cheeky comment to show */
+            overflow: hidden;
         }
 
         .tile-content {
             width: 100%;
             height: 100%;
-            padding: 0 30px;
+            padding: 0 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            opacity: 1;
-            transition: opacity 0.3s ease;
         }
 
         /* The cover that hides the answer */
         .tile-cover {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--sakura-pink), #ffcbd5);
-            border-radius: 10px;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--petal-gradient);
             z-index: 5;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 28px;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .feud-tile.revealed .tile-cover {
-            transform: translateY(-100%);
-            opacity: 0;
-            pointer-events: none;
-        }
+        .feud-tile.revealed .tile-cover { transform: translateY(-100%); }
 
         .answer-text {
             font-size: 22px;
@@ -185,32 +195,67 @@
             font-style: italic;
         }
 
-        /* 5. UI CONTROLS */
-        .reset-btn {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background: var(--sakura-pink);
-            border: none;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: 'Montserrat';
-            font-size: 12px;
-            z-index: 10;
+        /* 5. LIVE HUD CONTROLS */
+        .controls-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 2px dashed var(--sakura-pink);
         }
 
-        /* 6. SCOREBOARD & MISC */
-        .team-score {
+        .round-bank {
+            background: var(--deep-cherry);
+            color: white;
+            padding: 12px 50px;
+            border-radius: 15px;
             text-align: center;
-            padding: 40px;
-            background: white;
-            border-radius: 24px;
-            border: 4px solid var(--sakura-pink);
+            box-shadow: 0 10px 25px rgba(142, 36, 77, 0.3);
         }
-        .score-number { font-size: 120px; font-weight: 700; color: var(--deep-cherry); margin: 0; }
-        .team-name { font-size: 24px; color: var(--gold-accent); text-transform: uppercase; letter-spacing: 2px; }
+        .bank-label { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.8; }
+        .bank-value { font-size: 42px; font-weight: 800; display: block; }
+
+        .team-pill {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 20px;
+            border: 2px solid var(--sakura-pink);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            min-width: 260px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .assign-btn {
+            background: var(--gold-accent);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+        .assign-btn:hover { background: #b8952d; transform: translateY(-2px); }
+
+        .strikes-container { display: flex; gap: 10px; }
+        .strike-x {
+            width: 40px; height: 40px; border: 2px solid #eee; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+            font-size: 22px; color: #f0f0f0; background: white; transition: all 0.3s;
+        }
+        .strike-x.active { background: var(--strike-red); color: white; border-color: #c00; font-weight: bold; transform: scale(1.1); box-shadow: 0 4px 10px rgba(255,0,0,0.2); }
+
+        /* 6. STANDINGS */
+        .score-box { text-align: center; padding: 50px; background: white; border-radius: 30px; border: 5px solid var(--sakura-pink); flex: 1; box-shadow: var(--shadow-soft); }
+        .score-val { font-size: 130px; font-weight: 700; color: var(--deep-cherry); margin: 0; line-height: 1; }
+        .team-name-big { font-size: 32px; color: var(--gold-accent); font-weight: 700; text-transform: uppercase; letter-spacing: 3px; }
+
+        .reset-btn { position: absolute; bottom: 15px; right: 15px; font-size: 12px; opacity: 0.4; cursor: pointer; color: var(--deep-cherry); font-weight: 600; }
 
         .rules-list { list-style: none; padding: 0; }
         .rules-list li {
@@ -226,10 +271,48 @@
 </head>
 <body>
 
+<script>
+    let scores = { mom: 0, dad: 0 };
+    let currentBank = 0;
+
+    function updateAllScores() {
+        document.querySelectorAll('.mom-score-display').forEach(el => el.innerText = scores.mom);
+        document.querySelectorAll('.dad-score-display').forEach(el => el.innerText = scores.dad);
+        document.querySelectorAll('.bank-display').forEach(el => el.innerText = currentBank);
+    }
+
+    function revealTile(el, pts) {
+        if (!el.classList.contains('revealed')) {
+            el.classList.add('revealed');
+            currentBank += pts;
+            updateAllScores();
+        }
+    }
+
+    function assignRound(team) {
+        scores[team] += currentBank;
+        currentBank = 0;
+        updateAllScores();
+    }
+
+    function toggleStrike(el) {
+        el.classList.toggle('active');
+    }
+
+    function resetThisBoard(btn) {
+        currentBank = 0;
+        const s = btn.closest('.slide-container');
+        s.querySelectorAll('.feud-tile').forEach(t => t.classList.remove('revealed'));
+        s.querySelectorAll('.strike-x').forEach(x => x.classList.remove('active'));
+        updateAllScores();
+    }
+</script>
+
 <!-- Slide 1: Title Slide -->
 <div class="slide-container" id="slide1">
-    <div class="sakura-overlay" style="opacity: 0.4; background-image: url('http://googleusercontent.com/image_collection/image_retrieval/12654356390435813296');"></div>
-    <div class="falling-petals"></div>
+    <div class="flower-bg flower-tl"></div>
+    <div class="flower-bg flower-br"></div>
+    <div class="flower-bg flower-tr"></div>
     <div class="content-area" style="align-items: center; text-align: center; justify-content: center;">
         <p style="font-family: 'Montserrat'; font-weight: 300; letter-spacing: 5px; color: var(--deep-cherry); margin-bottom: 0;">WELCOME TO</p>
         <h1 style="font-family: 'Playfair Display'; font-size: 90px; color: var(--deep-cherry); margin: 0; line-height: 1;">Family Feud</h1>
