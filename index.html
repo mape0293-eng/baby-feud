@@ -357,11 +357,16 @@
     <div class="content-area">
         <div class="question-box">Question: Name something parents ask ChatGPT at 2 a.m.</div>
         <div class="feud-board">
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover">1</div><div class="tile-content"><span class="answer-text">“Is this normal?”</span><span class="points-box">30</span></div><span class="cheeky-comment">Classic panic mode!</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover">2</div><div class="tile-content"><span class="answer-text">Sleep regressions</span><span class="points-box">24</span></div><span class="cheeky-comment">Why sleep when baby doesn't?</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover">3</div><div class="tile-content"><span class="answer-text">Baby poop colors</span><span class="points-box">20</span></div><span class="cheeky-comment">Not a rainbow, sadly.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover">4</div><div class="tile-content"><span class="answer-text">Growth spurts</span><span class="points-box">16</span></div><span class="cheeky-comment">More food, less sleep.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover">5</div><div class="tile-content"><span class="answer-text">Teething timelines</span><span class="points-box">10</span></div><span class="cheeky-comment">Tiny teeth, big drama.</span></div>
+            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-content"><span class="answer-text">“Is this normal?”</span><span class="points-box">30</span></div><span class="cheeky-comment">Classic panic mode!</span></div>
+            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-content"><span class="answer-text">Sleep regressions</span><span class="points-box">24</span></div><span class="cheeky-comment">Why sleep when baby doesn't?</span></div>
+            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-content"><span class="answer-text">Baby poop colors</span><span class="points-box">20</span></div><span class="cheeky-comment">Not a rainbow, sadly.</span></div>
+            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-content"><span class="answer-text">Growth spurts</span><span class="points-box">16</span></div><span class="cheeky-comment">More food, less sleep.</span></div>
+            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-content"><span class="answer-text">Teething timelines</span><span class="points-box">10</span></div><span class="cheeky-comment">Tiny teeth, big drama.</span></div>
+        </div>
+        <div class="controls-footer">
+            <div class="team-pill"><span>TEAM MOM: <span class="mom-score-display" style="font-weight: 800;">0</span></span><div class="strikes-container"><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div></div><button class="assign-btn" onclick="assignRound('mom')">Assign to Mom</button></div>
+            <div class="round-bank"><span class="bank-label">Round Bank</span><span class="bank-display bank-value">0</span></div>
+            <div class="team-pill"><span>TEAM DAD: <span class="dad-score-display" style="font-weight: 800;">0</span></span><div class="strikes-container"><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div></div><button class="assign-btn" onclick="assignRound('dad')">Assign to Dad</button></div>
         </div>
     </div>
     <button class="reset-btn" onclick="resetRound(this)">Reset Board</button>
