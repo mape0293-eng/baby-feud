@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baby Feud - Full Game</title>
+    <title>Baby Feud - Vertical Flow</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -20,90 +20,85 @@
 
         body {
             background-color: #fce4ec;
+            margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 60px;
-            padding: 40px 0;
             font-family: 'Montserrat', sans-serif;
+            padding: 20px 0;
         }
 
         .slide-container {
-            width: 1280px;
-            height: 720px;
+            width: 1200px;
+            height: 680px;
             background-color: var(--pastel-pink);
             position: relative;
             display: flex;
             flex-direction: column;
-            border: 12px solid white;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            border: 8px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             overflow: hidden;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
 
-        /* --- DECORATIONS --- */
-        .flower-bg {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            opacity: 0.6;
-            z-index: 0;
-            pointer-events: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3cdefs%3e%3clinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3e%3cstop offset='0%25' style='stop-color:%23FFB7C5;stop-opacity:1' /%3e%3cstop offset='100%25' style='stop-color:%23ffdee5;stop-opacity:1' /%3e%3c/linearGradient%3e%3c/defs%3e%3cg transform='translate(50,50)'%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(0)'/%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(72)'/%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(144)'/%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(216)'/%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(288)'/%3e%3c/g%3e%3c/svg%3e");
-            background-size: contain;
-            background-repeat: no-repeat;
-        }
-        .flower-tl { top: -120px; left: -120px; transform: rotate(-10deg); }
-        .flower-br { bottom: -150px; right: -150px; transform: rotate(170deg); width: 600px; height: 600px; }
-        .flower-tr { top: 40px; right: -80px; width: 300px; height: 300px; opacity: 0.3; }
-
-        /* --- TYPOGRAPHY --- */
-        .slide-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
-            color: var(--deep-cherry);
-            margin: 40px 0 10px 60px;
+        /* HEADER & RESET */
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px 0 50px;
             z-index: 2;
         }
 
-        .content-area { padding: 0 60px; flex-grow: 1; display: flex; flex-direction: column; z-index: 2; }
-
-        .rules-list { list-style: none; padding: 0; margin-top: 40px; }
-        .rules-list li {
-            margin-bottom: 35px;
-            font-size: 28px;
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            color: var(--text-dark);
+        .slide-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: var(--deep-cherry);
+            margin: 0;
         }
-        .rules-list i { color: var(--sakura-pink); font-size: 36px; width: 50px; text-align: center; }
 
-        /* --- GAME TILES (NARROW) --- */
+        .reset-btn {
+            background: white;
+            border: 2px solid var(--sakura-pink);
+            color: var(--deep-cherry);
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .content-area { padding: 10px 50px; flex-grow: 1; display: flex; flex-direction: column; z-index: 2; }
+
         .question-box {
             background: rgba(255,255,255,0.8);
-            border-left: 8px solid var(--deep-cherry);
-            padding: 15px 30px;
-            margin-bottom: 20px;
-            font-size: 24px;
+            border-left: 6px solid var(--deep-cherry);
+            padding: 12px 25px;
+            margin-bottom: 15px;
+            font-size: 20px;
             font-style: italic;
         }
 
+        /* VERTICAL COLUMN GRID */
         .feud-board {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            grid-template-rows: repeat(3, 1fr);
+            grid-auto-flow: column; /* This forces 1,2,3 on left and 4,5,6 on right */
+            gap: 12px;
+            margin-bottom: 10px;
         }
 
         .feud-tile {
             background: white;
-            border-radius: 18px;
-            height: 75px;
+            border-radius: 12px;
+            height: 65px;
             display: flex;
             position: relative;
             cursor: pointer;
             overflow: hidden;
-            border: 3px solid var(--sakura-pink);
+            border: 2px solid var(--sakura-pink);
         }
 
         .tile-cover {
@@ -111,110 +106,68 @@
             top: 0; left: 0; width: 100%; height: 100%;
             background: var(--petal-gradient);
             z-index: 5;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 800; font-size: 28px; color: white;
-            transition: transform 0.5s ease-in-out;
+            transition: transform 0.4s ease-out;
         }
+        /* Removed content from tile-cover to hide numbers */
 
         .feud-tile.revealed .tile-cover { transform: translateY(-100%); }
 
         .tile-content {
             width: 100%;
-            padding: 0 25px;
+            padding: 0 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .ans-main { display: flex; flex-direction: column; justify-content: center; }
-
-        .answer-text {
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--deep-cherry);
-            text-transform: uppercase;
-            line-height: 1;
-        }
-
-        .cheeky-comment {
-            font-family: 'Dancing Script', cursive;
-            font-size: 18px;
-            color: var(--gold-accent);
-            margin-top: 2px;
-        }
-
+        .answer-text { font-size: 18px; font-weight: 800; color: var(--deep-cherry); text-transform: uppercase; }
+        .cheeky-comment { font-family: 'Dancing Script', cursive; font-size: 16px; color: var(--gold-accent); }
         .points-circle {
-            background: var(--deep-cherry);
-            color: white;
-            width: 45px; height: 45px;
-            border-radius: 50%;
+            background: var(--deep-cherry); color: white;
+            width: 40px; height: 40px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            font-size: 18px; font-weight: 800;
+            font-size: 16px; font-weight: 800;
         }
 
-        /* --- FOOTER --- */
+        /* FOOTER HUD */
         .controls-footer {
             display: flex;
             justify-content: space-between;
-            align-items: flex-end;
+            align-items: center;
             margin-top: auto;
-            padding-bottom: 25px;
+            padding-top: 10px;
+            padding-bottom: 15px;
             border-top: 2px dashed var(--sakura-pink);
-            padding-top: 15px;
         }
 
         .team-pill {
             background: white; border: 2px solid var(--sakura-pink);
-            padding: 12px 20px; border-radius: 20px;
-            min-width: 280px; display: flex; flex-direction: column; gap: 10px; align-items: center;
+            padding: 10px 15px; border-radius: 15px;
+            width: 260px; display: flex; flex-direction: column; gap: 5px; align-items: center;
         }
 
-        .round-bank {
-            background: var(--deep-cherry); color: white;
-            padding: 10px 45px; border-radius: 15px; text-align: center;
-        }
-        .bank-val { font-size: 36px; font-weight: 800; display: block; }
+        .score-val { font-size: 22px; color: var(--deep-cherry); font-weight: 800; }
 
-        .strikes-container { display: flex; gap: 8px; }
+        .round-bank { background: var(--deep-cherry); color: white; padding: 5px 30px; border-radius: 12px; text-align: center; }
+        .bank-val { font-size: 28px; font-weight: 800; display: block; }
+
+        .strikes-container { display: flex; gap: 5px; }
         .strike-x {
-            width: 32px; height: 32px; border: 2px solid #eee; border-radius: 6px;
+            width: 28px; height: 28px; border: 1px solid #ddd; border-radius: 4px;
             display: flex; align-items: center; justify-content: center; cursor: pointer;
-            font-size: 18px; color: #f0f0f0; background: white;
+            font-size: 14px; color: #eee; background: white;
         }
         .strike-x.active { background: var(--strike-red); color: white; border-color: #c00; font-weight: bold; }
 
-        .assign-btn {
-            background: var(--gold-accent); color: white; border: none;
-            padding: 6px 15px; border-radius: 20px; font-weight: 700; cursor: pointer; font-size: 12px;
-        }
+        .assign-btn { background: var(--gold-accent); color: white; border: none; padding: 4px 10px; border-radius: 15px; font-weight: 700; cursor: pointer; font-size: 11px; }
 
-        .reset-btn { position: absolute; bottom: 10px; right: 10px; font-size: 10px; opacity: 0.3; cursor: pointer; border: none; background: none; }
+        /* DECOR */
+        .flower-bg { position: absolute; width: 400px; height: 400px; opacity: 0.4; z-index: 0; pointer-events: none; background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='%23FFB7C5' transform='translate(50,50)'/%3e%3c/svg%3e"); background-size: contain; background-repeat: no-repeat; }
+        .flower-tl { top: -100px; left: -100px; }
+        .flower-br { bottom: -100px; right: -100px; }
     </style>
 </head>
 <body>
-
-<div class="slide-container" id="slide1">
-    <div class="flower-bg flower-tl"></div>
-    <div class="flower-bg flower-br"></div>
-    <div class="flower-bg flower-tr"></div>
-    <div class="content-area" style="align-items: center; text-align: center; justify-content: center;">
-        <p style="font-family: 'Montserrat'; font-weight: 300; letter-spacing: 5px; color: var(--deep-cherry); margin-bottom: 0;">WELCOME TO</p>
-        <h1 style="font-family: 'Playfair Display'; font-size: 90px; color: var(--deep-cherry); margin: 0; line-height: 1;">Baby Feud</h1>
-        <div style="width: 150px; height: 3px; background: var(--sakura-pink); margin: 30px 0;"></div>
-        <p style="font-size: 24px; color: var(--text-dark); letter-spacing: 2px;">“Who knows babies best?”</p>
-    </div>
-</div>
-
-<div class="slide-container" id="slide2">
-    <h2 class="slide-title">The Ground Rules</h2>
-    <div class="content-area">
-        <ul class="rules-list">
-            <li><i class="fa-solid fa-users"></i> Teams take turns guessing the top survey answers.</li>
-            <li><i class="fa-solid fa-trophy"></i> Top answer = Highest points. Focus on the popular opinion!</li>
-            <li><i class="fa-solid fa-circle-xmark"></i> 3 Strikes and the other team can steal the whole pot!</li>
-        </ul>
-    </div>
-</div>
 
 <div id="game-boards"></div>
 
@@ -228,18 +181,20 @@
                 { text: "Sleep regressions", pts: 24, comment: "Why sleep when baby doesn't?" },
                 { text: "Poop colors", pts: 20, comment: "The forbidden rainbow." },
                 { text: "Growth spurts", pts: 16, comment: "Feed. Sleep. Repeat." },
-                { text: "Teething timelines", pts: 10, comment: "Tiny teeth, big drama." }
+                { text: "Teething timelines", pts: 10, comment: "Tiny teeth, big drama." },
+                { text: "Daycare costs", pts: 5, comment: "Checking the savings..." }
             ]
         },
         {
-            title: "Round 2: The Shopping List",
-            question: "Name something new parents constantly buy",
+            title: "Round 2: Desi Relative Advice",
+            question: "Name something Indian relatives always suggest",
             answers: [
-                { text: "Diapers", pts: 70, comment: "Endless boxes!" },
-                { text: "Wipes", pts: 12, comment: "Keep 'em handy." },
-                { text: "Baby Clothes", pts: 8, comment: "Tiny fashion statements." },
-                { text: "Coffee", pts: 5, comment: "Fuel for survival." },
-                { text: "Take-out", pts: 5, comment: "Who has time to cook?" }
+                { text: "Oil massage", pts: 34, comment: "Champi solves everything." },
+                { text: "Ajwain Water", pts: 26, comment: "Ancient tummy logic." },
+                { text: "Put Kajal", pts: 18, comment: "Buri nazar protection." },
+                { text: "More Layers", pts: 12, comment: "Is the baby cold? Yes." },
+                { text: "Eat more Ghee", pts: 10, comment: "The solution to life." },
+                { text: "Honey on tongue", pts: 5, comment: "The old school way." }
             ]
         }
     ];
@@ -247,20 +202,14 @@
     let scores = { mom: 0, dad: 0 };
     let currentBank = 0;
 
-    function updateDisplays() {
-        document.querySelectorAll('.mom-score-display').forEach(el => el.innerText = scores.mom);
-        document.querySelectorAll('.dad-score-display').forEach(el => el.innerText = scores.dad);
-        document.querySelectorAll('.bank-display').forEach(el => el.innerText = currentBank);
-    }
-
     function renderGame() {
         const container = document.getElementById('game-boards');
-        rounds.forEach((round, rIdx) => {
+        rounds.forEach((round) => {
             let tilesHtml = '';
-            round.answers.forEach((a, aIdx) => {
+            round.answers.forEach((a) => {
                 tilesHtml += `
                     <div class="feud-tile" onclick="revealTile(this, ${a.pts})">
-                        <div class="tile-cover">${aIdx + 1}</div>
+                        <div class="tile-cover"></div>
                         <div class="tile-content">
                             <div class="ans-main">
                                 <span class="answer-text">${a.text}</span>
@@ -273,13 +222,17 @@
 
             container.innerHTML += `
                 <div class="slide-container">
-                    <h2 class="slide-title">${round.title}</h2>
+                    <div class="header-row">
+                        <h2 class="slide-title">${round.title}</h2>
+                        <button class="reset-btn" onclick="resetBoard(this)">RESET BOARD</button>
+                    </div>
                     <div class="content-area">
                         <div class="question-box">Question: ${round.question}</div>
                         <div class="feud-board">${tilesHtml}</div>
+                        
                         <div class="controls-footer">
                             <div class="team-pill">
-                                <strong>TEAM MOM: <span class="mom-score-display">0</span></strong>
+                                <span class="team-label">TEAM MOM: <span class="mom-score-display score-val">0</span></span>
                                 <div class="strikes-container">
                                     <div class="strike-x" onclick="toggleStrike(this)">X</div>
                                     <div class="strike-x" onclick="toggleStrike(this)">X</div>
@@ -287,12 +240,14 @@
                                 </div>
                                 <button class="assign-btn" onclick="assignPoints('mom')">Add Bank to Mom</button>
                             </div>
+
                             <div class="round-bank">
                                 <small>BANK</small>
                                 <span class="bank-val bank-display">0</span>
                             </div>
+
                             <div class="team-pill">
-                                <strong>TEAM DAD: <span class="dad-score-display">0</span></strong>
+                                <span class="team-label">TEAM DAD: <span class="dad-score-display score-val">0</span></span>
                                 <div class="strikes-container">
                                     <div class="strike-x" onclick="toggleStrike(this)">X</div>
                                     <div class="strike-x" onclick="toggleStrike(this)">X</div>
@@ -302,10 +257,15 @@
                             </div>
                         </div>
                     </div>
-                    <button class="reset-btn" onclick="resetBoard(this)">Reset Board</button>
                 </div>`;
         });
         updateDisplays();
+    }
+
+    function updateDisplays() {
+        document.querySelectorAll('.mom-score-display').forEach(el => el.innerText = scores.mom);
+        document.querySelectorAll('.dad-score-display').forEach(el => el.innerText = scores.dad);
+        document.querySelectorAll('.bank-display').forEach(el => el.innerText = currentBank);
     }
 
     function revealTile(el, pts) {
@@ -316,9 +276,7 @@
         }
     }
 
-    function toggleStrike(el) {
-        el.classList.toggle('active');
-    }
+    function toggleStrike(el) { el.classList.toggle('active'); }
 
     function assignPoints(team) {
         scores[team] += currentBank;
