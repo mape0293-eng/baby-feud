@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baby Feud - Optimized Tiles</title>
+    <title>Baby Feud - Full Game</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
@@ -23,8 +23,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 40px;
-            padding: 20px 0;
+            gap: 60px;
+            padding: 40px 0;
             font-family: 'Montserrat', sans-serif;
         }
 
@@ -35,41 +35,70 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            border: 10px solid white;
+            border: 12px solid white;
             box-shadow: 0 20px 50px rgba(0,0,0,0.1);
             overflow: hidden;
+            margin-bottom: 50px;
         }
 
+        /* --- DECORATIONS --- */
+        .flower-bg {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            opacity: 0.6;
+            z-index: 0;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3cdefs%3e%3clinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3e%3cstop offset='0%25' style='stop-color:%23FFB7C5;stop-opacity:1' /%3e%3cstop offset='100%25' style='stop-color:%23ffdee5;stop-opacity:1' /%3e%3c/linearGradient%3e%3c/defs%3e%3cg transform='translate(50,50)'%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(0)'/%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(72)'/%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(144)'/%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(216)'/%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(288)'/%3e%3c/g%3e%3c/svg%3e");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        .flower-tl { top: -120px; left: -120px; transform: rotate(-10deg); }
+        .flower-br { bottom: -150px; right: -150px; transform: rotate(170deg); width: 600px; height: 600px; }
+        .flower-tr { top: 40px; right: -80px; width: 300px; height: 300px; opacity: 0.3; }
+
+        /* --- TYPOGRAPHY --- */
         .slide-title {
             font-family: 'Playfair Display', serif;
-            font-size: 42px;
+            font-size: 48px;
             color: var(--deep-cherry);
-            margin: 30px 0 5px 60px;
+            margin: 40px 0 10px 60px;
+            z-index: 2;
         }
 
-        .content-area { padding: 0 60px; flex-grow: 1; display: flex; flex-direction: column; }
+        .content-area { padding: 0 60px; flex-grow: 1; display: flex; flex-direction: column; z-index: 2; }
 
+        .rules-list { list-style: none; padding: 0; margin-top: 40px; }
+        .rules-list li {
+            margin-bottom: 35px;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            color: var(--text-dark);
+        }
+        .rules-list i { color: var(--sakura-pink); font-size: 36px; width: 50px; text-align: center; }
+
+        /* --- GAME TILES (NARROW) --- */
         .question-box {
             background: rgba(255,255,255,0.8);
-            border-left: 6px solid var(--deep-cherry);
-            padding: 12px 25px;
-            margin-bottom: 15px;
-            font-size: 22px;
+            border-left: 8px solid var(--deep-cherry);
+            padding: 15px 30px;
+            margin-bottom: 20px;
+            font-size: 24px;
             font-style: italic;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
-        /* --- NARROWER TILES --- */
         .feud-board {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px; /* Tighter gap */
+            gap: 15px;
         }
 
         .feud-tile {
             background: white;
-            border-radius: 15px; /* Slightly less round for the narrower look */
-            height: 75px; /* Reduced from 100px/110px */
+            border-radius: 18px;
+            height: 75px;
             display: flex;
             position: relative;
             cursor: pointer;
@@ -84,14 +113,14 @@
             z-index: 5;
             display: flex; align-items: center; justify-content: center;
             font-weight: 800; font-size: 28px; color: white;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.5s ease-in-out;
         }
 
         .feud-tile.revealed .tile-cover { transform: translateY(-100%); }
 
         .tile-content {
             width: 100%;
-            padding: 0 20px;
+            padding: 0 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -100,7 +129,7 @@
         .ans-main { display: flex; flex-direction: column; justify-content: center; }
 
         .answer-text {
-            font-size: 20px; /* Scaled down */
+            font-size: 20px;
             font-weight: 800;
             color: var(--deep-cherry);
             text-transform: uppercase;
@@ -109,46 +138,42 @@
 
         .cheeky-comment {
             font-family: 'Dancing Script', cursive;
-            font-size: 17px; /* Scaled down */
+            font-size: 18px;
             color: var(--gold-accent);
-            margin-top: 1px;
+            margin-top: 2px;
         }
 
         .points-circle {
             background: var(--deep-cherry);
             color: white;
-            width: 45px; height: 45px; /* Scaled down */
+            width: 45px; height: 45px;
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             font-size: 18px; font-weight: 800;
         }
 
-        /* --- HUD CONTROLS --- */
+        /* --- FOOTER --- */
         .controls-footer {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-top: 10px;
-            padding-bottom: 20px;
+            align-items: flex-end;
+            margin-top: auto;
+            padding-bottom: 25px;
             border-top: 2px dashed var(--sakura-pink);
             padding-top: 15px;
         }
 
         .team-pill {
             background: white; border: 2px solid var(--sakura-pink);
-            padding: 10px 20px; border-radius: 15px;
-            min-width: 260px; display: flex; flex-direction: column; gap: 8px;
-            align-items: center;
+            padding: 12px 20px; border-radius: 20px;
+            min-width: 280px; display: flex; flex-direction: column; gap: 10px; align-items: center;
         }
-
-        .team-label { font-size: 14px; font-weight: 800; color: var(--text-dark); }
-        .score-val { font-size: 24px; color: var(--deep-cherry); }
 
         .round-bank {
             background: var(--deep-cherry); color: white;
-            padding: 8px 40px; border-radius: 12px; text-align: center;
+            padding: 10px 45px; border-radius: 15px; text-align: center;
         }
-        .bank-val { font-size: 32px; font-weight: 800; display: block; }
+        .bank-val { font-size: 36px; font-weight: 800; display: block; }
 
         .strikes-container { display: flex; gap: 8px; }
         .strike-x {
@@ -160,31 +185,36 @@
 
         .assign-btn {
             background: var(--gold-accent); color: white; border: none;
-            padding: 6px 12px; border-radius: 15px; font-weight: 700; cursor: pointer; font-size: 12px;
+            padding: 6px 15px; border-radius: 20px; font-weight: 700; cursor: pointer; font-size: 12px;
         }
 
         .reset-btn { position: absolute; bottom: 10px; right: 10px; font-size: 10px; opacity: 0.3; cursor: pointer; border: none; background: none; }
-
-        .flower-bg {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            opacity: 0.6;
-            z-index: 0;
-            pointer-events: none;
-            filter: drop-shadow(0 8px 15px rgba(142, 36, 77, 0.15));
-            /* Inline Detailed Sakura SVG */
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3cdefs%3e%3clinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3e%3cstop offset='0%25' style='stop-color:%23FFB7C5;stop-opacity:1' /%3e%3cstop offset='100%25' style='stop-color:%23ffdee5;stop-opacity:1' /%3e%3c/linearGradient%3e%3c/defs%3e%3cg transform='translate(50,50)'%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(0)'/%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(72)'/%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(144)'/%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(216)'/%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(288)'/%3e%3cg fill='%238E244D' opacity='0.4'%3e%3ccircle cx='0' cy='0' r='4'/%3e%3cline x1='0' y1='0' x2='0' y2='-12' stroke='%238E244D' stroke-width='0.5'/%3e%3cline x1='0' y1='0' x2='10' y2='-6' stroke='%238E244D' stroke-width='0.5'/%3e%3cline x1='0' y1='0' x2='8' y2='8' stroke='%238E244D' stroke-width='0.5'/%3e%3cline x1='0' y1='0' x2='-8' y2='8' stroke='%238E244D' stroke-width='0.5'/%3e%3cline x1='0' y1='0' x2='-10' y2='-6' stroke='%238E244D' stroke-width='0.5'/%3e%3c/g%3e%3c/g%3e%3c/svg%3e");
-            background-size: contain;
-            background-repeat: no-repeat;
-        }
-        
-        .flower-tl { top: -120px; left: -120px; transform: rotate(-10deg); }
-        .flower-br { bottom: -150px; right: -150px; transform: rotate(170deg); width: 600px; height: 600px; }
-        .flower-tr { top: 40px; right: -80px; width: 300px; height: 300px; opacity: 0.3; }
     </style>
 </head>
 <body>
+
+<div class="slide-container" id="slide1">
+    <div class="flower-bg flower-tl"></div>
+    <div class="flower-bg flower-br"></div>
+    <div class="flower-bg flower-tr"></div>
+    <div class="content-area" style="align-items: center; text-align: center; justify-content: center;">
+        <p style="font-family: 'Montserrat'; font-weight: 300; letter-spacing: 5px; color: var(--deep-cherry); margin-bottom: 0;">WELCOME TO</p>
+        <h1 style="font-family: 'Playfair Display'; font-size: 90px; color: var(--deep-cherry); margin: 0; line-height: 1;">Baby Feud</h1>
+        <div style="width: 150px; height: 3px; background: var(--sakura-pink); margin: 30px 0;"></div>
+        <p style="font-size: 24px; color: var(--text-dark); letter-spacing: 2px;">“Who knows babies best?”</p>
+    </div>
+</div>
+
+<div class="slide-container" id="slide2">
+    <h2 class="slide-title">The Ground Rules</h2>
+    <div class="content-area">
+        <ul class="rules-list">
+            <li><i class="fa-solid fa-users"></i> Teams take turns guessing the top survey answers.</li>
+            <li><i class="fa-solid fa-trophy"></i> Top answer = Highest points. Focus on the popular opinion!</li>
+            <li><i class="fa-solid fa-circle-xmark"></i> 3 Strikes and the other team can steal the whole pot!</li>
+        </ul>
+    </div>
+</div>
 
 <div id="game-boards"></div>
 
@@ -207,31 +237,24 @@
             answers: [
                 { text: "Diapers", pts: 70, comment: "Endless boxes!" },
                 { text: "Wipes", pts: 12, comment: "Keep 'em handy." },
-                { text: "Baby Clothes", pts: 8, comment: "They outgrow them in a week." },
+                { text: "Baby Clothes", pts: 8, comment: "Tiny fashion statements." },
                 { text: "Coffee", pts: 5, comment: "Fuel for survival." },
                 { text: "Take-out", pts: 5, comment: "Who has time to cook?" }
-            ]
-        },
-        {
-            title: "Round 7: Desi Relative Advice",
-            question: "Name something Indian relatives always suggest",
-            answers: [
-                { text: "Oil massage", pts: 34, comment: "Champi solves everything." },
-                { text: "Ajwain Water", pts: 26, comment: "Ancient tummy logic." },
-                { text: "Put Kajal", pts: 18, comment: "Buri nazar protection." },
-                { text: "More Layers", pts: 12, comment: "Is the baby cold? Yes." },
-                { text: "Eat more Ghee", pts: 10, comment: "The solution to life." }
             ]
         }
     ];
 
-    let globalScores = { mom: 0, dad: 0 };
+    let scores = { mom: 0, dad: 0 };
     let currentBank = 0;
 
-    function renderGame() {
-        const boardContainer = document.getElementById('game-boards');
-        boardContainer.innerHTML = ''; 
+    function updateDisplays() {
+        document.querySelectorAll('.mom-score-display').forEach(el => el.innerText = scores.mom);
+        document.querySelectorAll('.dad-score-display').forEach(el => el.innerText = scores.dad);
+        document.querySelectorAll('.bank-display').forEach(el => el.innerText = currentBank);
+    }
 
+    function renderGame() {
+        const container = document.getElementById('game-boards');
         rounds.forEach((round, rIdx) => {
             let tilesHtml = '';
             round.answers.forEach((a, aIdx) => {
@@ -248,16 +271,15 @@
                     </div>`;
             });
 
-            boardContainer.innerHTML += `
+            container.innerHTML += `
                 <div class="slide-container">
                     <h2 class="slide-title">${round.title}</h2>
                     <div class="content-area">
                         <div class="question-box">Question: ${round.question}</div>
                         <div class="feud-board">${tilesHtml}</div>
-                        
                         <div class="controls-footer">
                             <div class="team-pill">
-                                <span class="team-label">TEAM MOM: <span class="mom-score-display score-val">0</span></span>
+                                <strong>TEAM MOM: <span class="mom-score-display">0</span></strong>
                                 <div class="strikes-container">
                                     <div class="strike-x" onclick="toggleStrike(this)">X</div>
                                     <div class="strike-x" onclick="toggleStrike(this)">X</div>
@@ -265,14 +287,12 @@
                                 </div>
                                 <button class="assign-btn" onclick="assignPoints('mom')">Add Bank to Mom</button>
                             </div>
-
                             <div class="round-bank">
                                 <small>BANK</small>
                                 <span class="bank-val bank-display">0</span>
                             </div>
-
                             <div class="team-pill">
-                                <span class="team-label">TEAM DAD: <span class="dad-score-display score-val">0</span></span>
+                                <strong>TEAM DAD: <span class="dad-score-display">0</span></strong>
                                 <div class="strikes-container">
                                     <div class="strike-x" onclick="toggleStrike(this)">X</div>
                                     <div class="strike-x" onclick="toggleStrike(this)">X</div>
@@ -288,12 +308,6 @@
         updateDisplays();
     }
 
-    function updateDisplays() {
-        document.querySelectorAll('.mom-score-display').forEach(el => el.innerText = globalScores.mom);
-        document.querySelectorAll('.dad-score-display').forEach(el => el.innerText = globalScores.dad);
-        document.querySelectorAll('.bank-display').forEach(el => el.innerText = currentBank);
-    }
-
     function revealTile(el, pts) {
         if (!el.classList.contains('revealed')) {
             el.classList.add('revealed');
@@ -307,7 +321,7 @@
     }
 
     function assignPoints(team) {
-        globalScores[team] += currentBank;
+        scores[team] += currentBank;
         currentBank = 0;
         updateDisplays();
     }
@@ -319,31 +333,6 @@
         slide.querySelectorAll('.strike-x').forEach(x => x.classList.remove('active'));
         updateDisplays();
     }
-
-    <!-- Slide 1: Title Slide -->
-    <div class="slide-container" id="slide1">
-        <div class="flower-bg flower-tl"></div>
-        <div class="flower-bg flower-br"></div>
-        <div class="flower-bg flower-tr"></div>
-        <div class="content-area" style="align-items: center; text-align: center; justify-content: center;">
-            <p style="font-family: 'Montserrat'; font-weight: 300; letter-spacing: 5px; color: var(--deep-cherry); margin-bottom: 0;">WELCOME TO</p>
-            <h1 style="font-family: 'Playfair Display'; font-size: 90px; color: var(--deep-cherry); margin: 0; line-height: 1;">Baby Feud</h1>
-            <div style="width: 150px; height: 3px; background: var(--sakura-pink); margin: 30px 0;"></div>
-            <p style="font-size: 24px; color: var(--text-dark); letter-spacing: 2px;">“Who knows babies best?”</p>
-        </div>
-    </div>
-
-    <!-- Slide 2: Rules Slide -->
-    <div class="slide-container" id="slide2">
-        <h2 class="slide-title">The Ground Rules</h2>
-        <div class="content-area">
-            <ul class="rules-list">
-                <li><i class="fa-solid fa-users"></i> Teams take turns guessing the top survey answers.</li>
-                <li><i class="fa-solid fa-trophy"></i> Top answer = Highest points. Focus on the popular opinion!</li>
-                <li><i class="fa-solid fa-circle-xmark"></i> 3 Strikes and the other team can steal the whole pot!</li>
-            </ul>
-        </div>
-    </div>
 
     renderGame();
 </script>
