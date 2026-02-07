@@ -134,6 +134,7 @@
             width: 100%;
             height: 100%;
             padding: 0 25px;
+            flex: 1;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -167,6 +168,8 @@
             font-weight: 700;
             font-size: 20px;
         }
+
+        .ans-main { display: flex; flex-direction: column; max-width: 80%; }
 
         .cheeky-comment {
             position: absolute;
@@ -338,7 +341,7 @@
     <div class="content-area">
         <div class="question-box">Question: Name something parents ask ChatGPT at 2 a.m.</div>
         <div class="feud-board">
-            <div class="feud-tile" onclick="revealTile(this, 30)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">“Is this normal?”</span><span class="points-box">30</span></div><span class="cheeky-comment">Classic panic mode!</span></div>
+            <div class="feud-tile" onclick="revealTile(this, 30)"><div class="tile-cover"></div><div class="tile-content"><div class="ans-main"><span class="answer-text">“Is this normal?”</span><span class="cheeky-comment">Classic panic mode!</span></div><span class="points-box">30</span></div></div>
             <div class="feud-tile" onclick="revealTile(this, 24)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Sleep regressions</span><span class="points-box">24</span></div><span class="cheeky-comment">Why sleep when baby doesn't?</span></div>
             <div class="feud-tile" onclick="revealTile(this, 20)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Baby poop colors</span><span class="points-box">20</span></div><span class="cheeky-comment">Not a rainbow, sadly.</span></div>
             <div class="feud-tile" onclick="revealTile(this, 16)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Growth spurts</span><span class="points-box">16</span></div><span class="cheeky-comment">More food, less sleep.</span></div>
