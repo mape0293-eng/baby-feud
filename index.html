@@ -164,6 +164,24 @@
         }
 
         .reset-btn { position: absolute; bottom: 10px; right: 10px; font-size: 10px; opacity: 0.3; cursor: pointer; border: none; background: none; }
+
+        .flower-bg {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            opacity: 0.6;
+            z-index: 0;
+            pointer-events: none;
+            filter: drop-shadow(0 8px 15px rgba(142, 36, 77, 0.15));
+            /* Inline Detailed Sakura SVG */
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3cdefs%3e%3clinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3e%3cstop offset='0%25' style='stop-color:%23FFB7C5;stop-opacity:1' /%3e%3cstop offset='100%25' style='stop-color:%23ffdee5;stop-opacity:1' /%3e%3c/linearGradient%3e%3c/defs%3e%3cg transform='translate(50,50)'%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(0)'/%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(72)'/%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(144)'/%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(216)'/%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(288)'/%3e%3cg fill='%238E244D' opacity='0.4'%3e%3ccircle cx='0' cy='0' r='4'/%3e%3cline x1='0' y1='0' x2='0' y2='-12' stroke='%238E244D' stroke-width='0.5'/%3e%3cline x1='0' y1='0' x2='10' y2='-6' stroke='%238E244D' stroke-width='0.5'/%3e%3cline x1='0' y1='0' x2='8' y2='8' stroke='%238E244D' stroke-width='0.5'/%3e%3cline x1='0' y1='0' x2='-8' y2='8' stroke='%238E244D' stroke-width='0.5'/%3e%3cline x1='0' y1='0' x2='-10' y2='-6' stroke='%238E244D' stroke-width='0.5'/%3e%3c/g%3e%3c/g%3e%3c/svg%3e");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        
+        .flower-tl { top: -120px; left: -120px; transform: rotate(-10deg); }
+        .flower-br { bottom: -150px; right: -150px; transform: rotate(170deg); width: 600px; height: 600px; }
+        .flower-tr { top: 40px; right: -80px; width: 300px; height: 300px; opacity: 0.3; }
     </style>
 </head>
 <body>
@@ -301,6 +319,31 @@
         slide.querySelectorAll('.strike-x').forEach(x => x.classList.remove('active'));
         updateDisplays();
     }
+
+    <!-- Slide 1: Title Slide -->
+    <div class="slide-container" id="slide1">
+        <div class="flower-bg flower-tl"></div>
+        <div class="flower-bg flower-br"></div>
+        <div class="flower-bg flower-tr"></div>
+        <div class="content-area" style="align-items: center; text-align: center; justify-content: center;">
+            <p style="font-family: 'Montserrat'; font-weight: 300; letter-spacing: 5px; color: var(--deep-cherry); margin-bottom: 0;">WELCOME TO</p>
+            <h1 style="font-family: 'Playfair Display'; font-size: 90px; color: var(--deep-cherry); margin: 0; line-height: 1;">Baby Feud</h1>
+            <div style="width: 150px; height: 3px; background: var(--sakura-pink); margin: 30px 0;"></div>
+            <p style="font-size: 24px; color: var(--text-dark); letter-spacing: 2px;">“Who knows babies best?”</p>
+        </div>
+    </div>
+
+    <!-- Slide 2: Rules Slide -->
+    <div class="slide-container" id="slide2">
+        <h2 class="slide-title">The Ground Rules</h2>
+        <div class="content-area">
+            <ul class="rules-list">
+                <li><i class="fa-solid fa-users"></i> Teams take turns guessing the top survey answers.</li>
+                <li><i class="fa-solid fa-trophy"></i> Top answer = Highest points. Focus on the popular opinion!</li>
+                <li><i class="fa-solid fa-circle-xmark"></i> 3 Strikes and the other team can steal the whole pot!</li>
+            </ul>
+        </div>
+    </div>
 
     renderGame();
 </script>
