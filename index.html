@@ -311,7 +311,6 @@
 
 <!-- Slide 2: Rules Slide -->
 <div class="slide-container" id="slide2">
-    <div class="sakura-overlay"></div>
     <h2 class="slide-title">The Ground Rules</h2>
     <div class="content-area">
         <ul class="rules-list">
@@ -335,16 +334,15 @@
 
 <!-- Slide 3: Round 1 -->
 <div class="slide-container" id="slide3">
-    <div class="sakura-overlay"></div>
     <h2 class="slide-title">Round 1: Midnight Inquiries</h2>
     <div class="content-area">
         <div class="question-box">Question: Name something parents ask ChatGPT at 2 a.m.</div>
         <div class="feud-board">
-            <div class="feud-tile" onclick="revealTile(this, 30)"><div class="tile-content"><span class="answer-text">“Is this normal?”</span><span class="points-box">30</span></div><span class="cheeky-comment">Classic panic mode!</span></div>
-            <div class="feud-tile" onclick="revealTile(this, 24)"><div class="tile-content"><span class="answer-text">Sleep regressions</span><span class="points-box">24</span></div><span class="cheeky-comment">Why sleep when baby doesn't?</span></div>
-            <div class="feud-tile" onclick="revealTile(this, 20)"><div class="tile-content"><span class="answer-text">Baby poop colors</span><span class="points-box">20</span></div><span class="cheeky-comment">Not a rainbow, sadly.</span></div>
-            <div class="feud-tile" onclick="revealTile(this, 16)"><div class="tile-content"><span class="answer-text">Growth spurts</span><span class="points-box">16</span></div><span class="cheeky-comment">More food, less sleep.</span></div>
-            <div class="feud-tile" onclick="revealTile(this, 10)"><div class="tile-content"><span class="answer-text">Teething timelines</span><span class="points-box">10</span></div><span class="cheeky-comment">Tiny teeth, big drama.</span></div>
+            <div class="feud-tile" onclick="revealTile(this, 30)"><div class="tile-cover"/><div class="tile-content"><span class="answer-text">“Is this normal?”</span><span class="points-box">30</span></div><span class="cheeky-comment">Classic panic mode!</span></div>
+            <div class="feud-tile" onclick="revealTile(this, 24)"><div class="tile-cover"/><div class="tile-content"><span class="answer-text">Sleep regressions</span><span class="points-box">24</span></div><span class="cheeky-comment">Why sleep when baby doesn't?</span></div>
+            <div class="feud-tile" onclick="revealTile(this, 20)"><div class="tile-cover"/><div class="tile-content"><span class="answer-text">Baby poop colors</span><span class="points-box">20</span></div><span class="cheeky-comment">Not a rainbow, sadly.</span></div>
+            <div class="feud-tile" onclick="revealTile(this, 16)"><div class="tile-cover"/><div class="tile-content"><span class="answer-text">Growth spurts</span><span class="points-box">16</span></div><span class="cheeky-comment">More food, less sleep.</span></div>
+            <div class="feud-tile" onclick="revealTile(this, 10)"><div class="tile-cover"/><div class="tile-content"><span class="answer-text">Teething timelines</span><span class="points-box">10</span></div><span class="cheeky-comment">Tiny teeth, big drama.</span></div>
         </div>
         <div class="controls-footer">
             <div class="team-pill"><span>TEAM MOM: <span class="mom-score-display" style="font-weight: 800;">0</span></span><div class="strikes-container"><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div></div><button class="assign-btn" onclick="assignRound('mom')">Assign to Mom</button></div>
