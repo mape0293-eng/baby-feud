@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baby Feud</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* 1. CORE THEME & VARIABLES */
         :root {
             --sakura-pink: #FFB7C5;
             --petal-gradient: linear-gradient(135deg, #FFB7C5 0%, #ffcbd5 100%);
@@ -17,20 +15,15 @@
             --deep-cherry: #8E244D;
             --gold-accent: #D4AF37;
             --text-dark: #4A4A4A;
-            --white-glass: rgba(255, 255, 255, 0.85);
-            --shadow-soft: 0 10px 30px rgba(142, 36, 77, 0.1);
-            --strike-red: #ff4d4d;
         }
 
-        * { box-sizing: border-box; }
-        
         body {
-            margin: 0;
-            padding: 20px 0;
             background-color: #fce4ec;
-            display: grid;
-            gap: 40px;
-            place-items: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+            padding: 40px 0;
             font-family: 'Montserrat', sans-serif;
         }
 
@@ -38,546 +31,198 @@
             width: 1280px;
             height: 720px;
             background-color: var(--pastel-pink);
-            overflow: hidden;
             position: relative;
             display: flex;
             flex-direction: column;
             border: 12px solid white;
             box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-            color: var(--text-dark);
+            overflow: hidden;
         }
 
-        /* 2. ENHANCED SAKURA SVG DECORATION */
-        .flower-bg {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            opacity: 0.6;
-            z-index: 0;
-            pointer-events: none;
-            filter: drop-shadow(0 8px 15px rgba(142, 36, 77, 0.15));
-            /* Inline Detailed Sakura SVG */
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3cdefs%3e%3clinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3e%3cstop offset='0%25' style='stop-color:%23FFB7C5;stop-opacity:1' /%3e%3cstop offset='100%25' style='stop-color:%23ffdee5;stop-opacity:1' /%3e%3c/linearGradient%3e%3c/defs%3e%3cg transform='translate(50,50)'%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(0)'/%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(72)'/%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(144)'/%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(216)'/%3e%3cpath d='M0,-5 C15,-35 45,-35 45,-15 C45,5 15,5 5,0 L0,0 C-15,5 -45,5 -45,-15 C-45,-35 -15,-35 0,-5' fill='url(%23g)' transform='rotate(288)'/%3e%3cg fill='%238E244D' opacity='0.4'%3e%3ccircle cx='0' cy='0' r='4'/%3e%3cline x1='0' y1='0' x2='0' y2='-12' stroke='%238E244D' stroke-width='0.5'/%3e%3cline x1='0' y1='0' x2='10' y2='-6' stroke='%238E244D' stroke-width='0.5'/%3e%3cline x1='0' y1='0' x2='8' y2='8' stroke='%238E244D' stroke-width='0.5'/%3e%3cline x1='0' y1='0' x2='-8' y2='8' stroke='%238E244D' stroke-width='0.5'/%3e%3cline x1='0' y1='0' x2='-10' y2='-6' stroke='%238E244D' stroke-width='0.5'/%3e%3c/g%3e%3c/g%3e%3c/svg%3e");
-            background-size: contain;
-            background-repeat: no-repeat;
-        }
-        
-        .flower-tl { top: -120px; left: -120px; transform: rotate(-10deg); }
-        .flower-br { bottom: -150px; right: -150px; transform: rotate(170deg); width: 600px; height: 600px; }
-        .flower-tr { top: 40px; right: -80px; width: 300px; height: 300px; opacity: 0.3; }
-
-        /* 3. TYPOGRAPHY & TITLES */
         .slide-title {
             font-family: 'Playfair Display', serif;
             font-size: 48px;
             color: var(--deep-cherry);
             margin: 40px 0 10px 60px;
-            z-index: 2;
-            position: relative;
-            letter-spacing: -1px;
         }
 
-        .slide-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--sakura-pink);
-            margin-top: 5px;
-        }
-
-        .content-area {
-            flex-grow: 1;
-            padding: 0 60px 20px 60px;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+        .content-area { padding: 0 60px; flex-grow: 1; }
 
         .question-box {
-            background: var(--white-glass);
+            background: rgba(255,255,255,0.8);
             border-left: 8px solid var(--deep-cherry);
             padding: 15px 30px;
             margin-bottom: 25px;
             font-size: 26px;
             font-style: italic;
-            box-shadow: var(--shadow-soft);
-            border-radius: 4px;
-            backdrop-filter: blur(8px);
         }
 
-        /* 4. FAMILY FEUD BOARD STYLING (INTERACTIVE) */
+        /* --- THE FIXED GRID & CARD GAP --- */
         .feud-board {
-            width: 100%;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2opx;
-            margin-top: 10px;
+            gap: 20px; /* Adjust this value to increase/decrease space between cards */
         }
 
         .feud-tile {
             background: white;
-            border-radius: 12px;
-            height: 70px;
+            border-radius: 25px;
+            height: 110px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 2px solid var(--sakura-pink);
-            box-shadow: var(--shadow-soft);
             position: relative;
             cursor: pointer;
             overflow: hidden;
+            border: 4px solid var(--sakura-pink);
         }
 
-        .tile-content {
-            width: 100%;
-            height: 100%;
-            padding: 0 25px;
-            flex: 1;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* The cover that hides the answer */
         .tile-cover {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background: var(--petal-gradient);
             z-index: 5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 32px; color: white;
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .feud-tile.revealed .tile-cover { transform: translateY(-100%); }
 
+        .tile-content {
+            width: 100%;
+            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ans-main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
         .answer-text {
-            font-size: 20px;
-            font-weight: 600;
+            font-size: 24px;
+            font-weight: 800;
             color: var(--deep-cherry);
+            text-transform: uppercase;
+            line-height: 1.2;
         }
-
-        .points-box {
-            background: var(--deep-cherry);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 20px;
-        }
-
-        .ans-main { display: flex; flex-direction: column; max-width: 80%; }
 
         .cheeky-comment {
-            position: absolute;
-            bottom: -22px;
-            left: 20px;
             font-family: 'Dancing Script', cursive;
-            font-size: 19px;
+            font-size: 20px;
             color: var(--gold-accent);
-            opacity: 0;
-            transition: opacity 0.5s ease 0.3s;
+            margin-top: 2px;
         }
 
-        .feud-tile.revealed .cheeky-comment {
-            opacity: 1;
+        .points-circle {
+            background: var(--deep-cherry);
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            font-weight: 800;
+            flex-shrink: 0;
         }
 
-        /* 5. LIVE HUD CONTROLS */
+        /* --- FOOTER CONTROLS --- */
         .controls-footer {
             display: flex;
             justify-content: space-between;
-            align-items: flex-end;
+            align-items: center;
             margin-top: auto;
-            padding-top: 15px;
+            padding-bottom: 30px;
             border-top: 2px dashed var(--sakura-pink);
+            padding-top: 20px;
         }
-
-        .round-bank {
-            background: var(--deep-cherry);
-            color: white;
-            padding: 12px 50px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(142, 36, 77, 0.3);
-        }
-        .bank-label { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.8; }
-        .bank-value { font-size: 42px; font-weight: 800; display: block; }
 
         .team-pill {
-            background: white;
-            padding: 15px 25px;
-            border-radius: 20px;
-            border: 2px solid var(--sakura-pink);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            min-width: 260px;
-            box-shadow: var(--shadow-soft);
+            background: white; border: 2px solid var(--sakura-pink);
+            padding: 15px 30px; border-radius: 20px; text-align: center;
+            min-width: 250px;
         }
 
-        .assign-btn {
-            background: var(--gold-accent);
-            color: white;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 13px;
-            transition: all 0.2s;
+        .bank-box {
+            background: var(--deep-cherry); color: white;
+            padding: 15px 50px; border-radius: 15px; text-align: center;
         }
-        .assign-btn:hover { background: #b8952d; transform: translateY(-2px); }
-
-        .strikes-container { display: flex; gap: 10px; }
-        .strike-x {
-            width: 40px; height: 40px; border: 2px solid #eee; border-radius: 8px;
-            display: flex; align-items: center; justify-content: center; cursor: pointer;
-            font-size: 22px; color: #f0f0f0; background: white; transition: all 0.3s;
-        }
-        .strike-x.active { background: var(--strike-red); color: white; border-color: #c00; font-weight: bold; transform: scale(1.1); box-shadow: 0 4px 10px rgba(255,0,0,0.2); }
-
-        /* 6. STANDINGS */
-        .score-box { text-align: center; padding: 50px; background: white; border-radius: 30px; border: 5px solid var(--sakura-pink); flex: 1; box-shadow: var(--shadow-soft); }
-        .score-val { font-size: 130px; font-weight: 700; color: var(--deep-cherry); margin: 0; line-height: 1; }
-        .team-name-big { font-size: 32px; color: var(--gold-accent); font-weight: 700; text-transform: uppercase; letter-spacing: 3px; }
-
-        .reset-btn { position: absolute; bottom: 15px; right: 15px; font-size: 12px; opacity: 0.4; cursor: pointer; color: var(--deep-cherry); font-weight: 600; }
-
-        .rules-list { list-style: none; padding: 0; }
-        .rules-list li {
-            margin-bottom: 25px;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        .rules-list i { color: var(--sakura-pink); font-size: 32px; }
-
+        .bank-val { font-size: 36px; font-weight: 800; display: block; }
     </style>
 </head>
 <body>
 
-<script>
-    let scores = { mom: 0, dad: 0 };
-    let currentBank = 0;
+<div id="game-boards"></div>
 
-    function updateAllScores() {
-        document.querySelectorAll('.mom-score-display').forEach(el => el.innerText = scores.mom);
-        document.querySelectorAll('.dad-score-display').forEach(el => el.innerText = scores.dad);
-        document.querySelectorAll('.bank-display').forEach(el => el.innerText = currentBank);
+<script>
+    const rounds = [
+        {
+            title: "Round 1: Midnight Inquiries",
+            question: "Name something parents ask ChatGPT at 2 a.m.",
+            answers: [
+                { text: "Is this normal?", pts: 35, comment: "Spoiler: Nothing is normal anymore." },
+                { text: "Sleep regressions", pts: 24, comment: "Why sleep when baby doesn't?" },
+                { text: "Baby poop colors", pts: 20, comment: "Not a rainbow, sadly." },
+                { text: "Growth spurts", pts: 16, comment: "More food, less sleep." },
+                { text: "Teething timelines", pts: 10, comment: "Tiny teeth, big drama." }
+            ]
+        }
+    ];
+
+    let currentBank = 0;
+    const boardContainer = document.getElementById('game-boards');
+
+    // For loop generates each round
+    for (let i = 0; i < rounds.length; i++) {
+        const round = rounds[i];
+        let tilesHtml = '';
+
+        // Nested for loop generates each card
+        for (let j = 0; j < round.answers.length; j++) {
+            const a = round.answers[j];
+            tilesHtml += `
+                <div class="feud-tile" onclick="revealTile(this, ${a.pts})">
+                    <div class="tile-cover">${j + 1}</div>
+                    <div class="tile-content">
+                        <div class="ans-main">
+                            <span class="answer-text">${a.text}</span>
+                            <span class="cheeky-comment">"${a.comment}"</span>
+                        </div>
+                        <div class="points-circle">${a.pts}</div>
+                    </div>
+                </div>`;
+        }
+
+        boardContainer.innerHTML += `
+            <div class="slide-container">
+                <h2 class="slide-title">${round.title}</h2>
+                <div class="content-area">
+                    <div class="question-box">Question: ${round.question}</div>
+                    <div class="feud-board">${tilesHtml}</div>
+                    <div class="controls-footer">
+                        <div class="team-pill">MOM: <span id="mom-score">0</span></div>
+                        <div class="bank-box">
+                            <small>BANK</small>
+                            <span class="bank-val" id="bank-val">0</span>
+                        </div>
+                        <div class="team-pill">DAD: <span id="dad-score">0</span></div>
+                    </div>
+                </div>
+            </div>`;
     }
 
     function revealTile(el, pts) {
         if (!el.classList.contains('revealed')) {
             el.classList.add('revealed');
             currentBank += pts;
-            updateAllScores();
+            document.getElementById('bank-val').innerText = currentBank;
         }
     }
-
-    function assignRound(team) {
-        scores[team] += currentBank;
-        currentBank = 0;
-        updateAllScores();
-    }
-
-    function toggleStrike(el) {
-        el.classList.toggle('active');
-    }
-
-    function resetThisBoard(btn) {
-        currentBank = 0;
-        const s = btn.closest('.slide-container');
-        s.querySelectorAll('.feud-tile').forEach(t => t.classList.remove('revealed'));
-        s.querySelectorAll('.strike-x').forEach(x => x.classList.remove('active'));
-        updateAllScores();
-    }
 </script>
-
-<!-- Slide 1: Title Slide -->
-<div class="slide-container" id="slide1">
-    <div class="flower-bg flower-tl"></div>
-    <div class="flower-bg flower-br"></div>
-    <div class="flower-bg flower-tr"></div>
-    <div class="content-area" style="align-items: center; text-align: center; justify-content: center;">
-        <p style="font-family: 'Montserrat'; font-weight: 300; letter-spacing: 5px; color: var(--deep-cherry); margin-bottom: 0;">WELCOME TO</p>
-        <h1 style="font-family: 'Playfair Display'; font-size: 90px; color: var(--deep-cherry); margin: 0; line-height: 1;">Baby Feud</h1>
-        <div style="width: 150px; height: 3px; background: var(--sakura-pink); margin: 30px 0;"></div>
-        <p style="font-size: 24px; color: var(--text-dark); letter-spacing: 2px;">“Who knows babies best?”</p>
-    </div>
-</div>
-
-<!-- Slide 2: Rules Slide -->
-<div class="slide-container" id="slide2">
-    <h2 class="slide-title">The Ground Rules</h2>
-    <div class="content-area">
-        <ul class="rules-list">
-            <li><i class="fa-solid fa-users"></i> Teams take turns guessing the top survey answers.</li>
-            <li><i class="fa-solid fa-trophy"></i> Top answer = Highest points. Focus on the popular opinion!</li>
-            <li><i class="fa-solid fa-circle-xmark"></i> 3 Strikes and the other team can steal the whole pot!</li>
-        </ul>
-    </div>
-</div>
-
-<!-- Round Builder Utility -->
-<script>
-    function toggleTile(el) {
-        el.classList.toggle('revealed');
-    }
-    function resetRound(btn) {
-        const slide = btn.closest('.slide-container');
-        slide.querySelectorAll('.feud-tile').forEach(tile => tile.classList.remove('revealed'));
-    }
-</script>
-
-<!-- Slide 3: Round 1 -->
-<div class="slide-container" id="slide3">
-    <h2 class="slide-title">Round 1: Midnight Inquiries</h2>
-    <div class="content-area">
-        <div class="question-box">Question: Name something parents ask ChatGPT at 2 a.m.</div>
-        <div class="feud-board">
-            <div class="feud-tile" onclick="revealTile(this, 30)"><div class="tile-cover"></div><div class="tile-content"><div class="ans-main"><span class="answer-text">“Is this normal?”</span><span class="cheeky-comment">Classic panic mode!</span></div><span class="points-box">30</span></div></div>
-            <div class="feud-tile" onclick="revealTile(this, 24)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Sleep regressions</span><span class="points-box">24</span></div><span class="cheeky-comment">Why sleep when baby doesn't?</span></div>
-            <div class="feud-tile" onclick="revealTile(this, 20)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Baby poop colors</span><span class="points-box">20</span></div><span class="cheeky-comment">Not a rainbow, sadly.</span></div>
-            <div class="feud-tile" onclick="revealTile(this, 16)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Growth spurts</span><span class="points-box">16</span></div><span class="cheeky-comment">More food, less sleep.</span></div>
-            <div class="feud-tile" onclick="revealTile(this, 10)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Teething timelines</span><span class="points-box">10</span></div><span class="cheeky-comment">Tiny teeth, big drama.</span></div>
-        </div>
-        <div class="controls-footer">
-            <div class="team-pill"><span>TEAM MOM: <span class="mom-score-display" style="font-weight: 800;">0</span></span><div class="strikes-container"><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div></div><button class="assign-btn" onclick="assignRound('mom')">Assign to Mom</button></div>
-            <div class="round-bank"><span class="bank-label">Round Bank</span><span class="bank-display bank-value">0</span></div>
-            <div class="team-pill"><span>TEAM DAD: <span class="dad-score-display" style="font-weight: 800;">0</span></span><div class="strikes-container"><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div></div><button class="assign-btn" onclick="assignRound('dad')">Assign to Dad</button></div>
-        </div>
-    </div>
-    <button class="reset-btn" onclick="resetRound(this)">Reset Board</button>
-</div>
-
-<!-- Slide 4: Round 2 -->
-<div class="slide-container" id="slide4">
-    <div class="sakura-overlay"></div>
-    <h2 class="slide-title">Round 2: The Shopping List</h2>
-    <div class="content-area">
-        <div class="question-box">Question: Name something new parents constantly buy</div>
-        <div class="feud-board">
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Diapers</span><span class="points-box">70</span></div><span class="cheeky-comment">Endless diapers!</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Wipes / Cream</span><span class="points-box">8</span></div><span class="cheeky-comment">Sticky situations ahead.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Baby Clothes</span><span class="points-box">7</span></div><span class="cheeky-comment">Tiny fashion statements.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Take-out</span><span class="points-box">4</span></div><span class="cheeky-comment">Dinner takes a back seat.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Coffee</span><span class="points-box">3</span></div><span class="cheeky-comment">Liquid sanity.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Formula</span><span class="points-box">2</span></div><span class="cheeky-comment">Milk math!</span></div>
-        </div>
-        <div class="controls-footer">
-            <div class="team-pill"><span>TEAM MOM: <span class="mom-score-display" style="font-weight: 800;">0</span></span><div class="strikes-container"><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div></div><button class="assign-btn" onclick="assignRound('mom')">Assign to Mom</button></div>
-            <div class="round-bank"><span class="bank-label">Round Bank</span><span class="bank-display bank-value">0</span></div>
-            <div class="team-pill"><span>TEAM DAD: <span class="dad-score-display" style="font-weight: 800;">0</span></span><div class="strikes-container"><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div></div><button class="assign-btn" onclick="assignRound('dad')">Assign to Dad</button></div>
-        </div>
-    </div>
-    <button class="reset-btn" onclick="resetRound(this)">Reset Board</button>
-</div>
-
-<!-- Slide 5: Round 3 -->
-<div class="slide-container" id="slide5">
-    <div class="sakura-overlay"></div>
-    <h2 class="slide-title">Round 3: Cute or Cringe?</h2>
-    <div class="content-area">
-        <div class="question-box">Question: Name something cute for a baby but not an adult</div>
-        <div class="feud-board">
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Fart</span><span class="points-box">59</span></div><span class="cheeky-comment">Baby gas, maximum cute!</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Poop / Pee Pants</span><span class="points-box">11</span></div><span class="cheeky-comment">Only cute if they’re tiny.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Burp</span><span class="points-box">6</span></div><span class="cheeky-comment">Air biscuits.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Drool</span><span class="points-box">4</span></div><span class="cheeky-comment">River of adorableness.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Blow Bubbles</span><span class="points-box">3</span></div><span class="cheeky-comment">Soap-free fun.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Messy Eating</span><span class="points-box">2</span></div><span class="cheeky-comment">Art attack!</span></div>
-        </div>
-        <div class="controls-footer">
-            <div class="team-pill"><span>TEAM MOM: <span class="mom-score-display" style="font-weight: 800;">0</span></span><div class="strikes-container"><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div></div><button class="assign-btn" onclick="assignRound('mom')">Assign to Mom</button></div>
-            <div class="round-bank"><span class="bank-label">Round Bank</span><span class="bank-display bank-value">0</span></div>
-            <div class="team-pill"><span>TEAM DAD: <span class="dad-score-display" style="font-weight: 800;">0</span></span><div class="strikes-container"><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div></div><button class="assign-btn" onclick="assignRound('dad')">Assign to Dad</button></div>
-        </div>
-    </div>
-    <button class="reset-btn" onclick="resetRound(this)">Reset Board</button>
-</div>
-
-<!-- Slide 6: Round 4 -->
-<div class="slide-container" id="slide6">
-    <div class="sakura-overlay"></div>
-    <h2 class="slide-title">Round 4: Babyhood Nostalgia</h2>
-    <div class="content-area">
-        <div class="question-box">Question: If you were a baby for a day, what would you enjoy?</div>
-        <div class="feud-board">
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Big Naps</span><span class="points-box">49</span></div><span class="cheeky-comment">Dreamy heaven.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Snuggles</span><span class="points-box">14</span></div><span class="cheeky-comment">Cuddle therapy.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Being Carried</span><span class="points-box">10</span></div><span class="cheeky-comment">Human elevator vibes.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">No Responsibilities</span><span class="points-box">9</span></div><span class="cheeky-comment">Zero pressure.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Being Catered To</span><span class="points-box">2</span></div><span class="cheeky-comment">VIP baby treatment.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Playtime</span><span class="points-box">2</span></div><span class="cheeky-comment">Work-free fun!</span></div>
-        </div>
-        <div class="controls-footer">
-            <div class="team-pill"><span>TEAM MOM: <span class="mom-score-display" style="font-weight: 800;">0</span></span><div class="strikes-container"><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div></div><button class="assign-btn" onclick="assignRound('mom')">Assign to Mom</button></div>
-            <div class="round-bank"><span class="bank-label">Round Bank</span><span class="bank-display bank-value">0</span></div>
-            <div class="team-pill"><span>TEAM DAD: <span class="dad-score-display" style="font-weight: 800;">0</span></span><div class="strikes-container"><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div></div><button class="assign-btn" onclick="assignRound('dad')">Assign to Dad</button></div>
-        </div>
-    </div>
-    <button class="reset-btn" onclick="resetRound(this)">Reset Board</button>
-</div>
-
-<!-- Slide 7: Round 5 -->
-<div class="slide-container" id="slide7">
-    <div class="sakura-overlay"></div>
-    <h2 class="slide-title">Round 5: The Broken Vows</h2>
-    <div class="content-area">
-        <div class="question-box">Question: Name something parents swear they’ll never do...</div>
-        <div class="feud-board">
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Co-sleep</span><span class="points-box">32</span></div><span class="cheeky-comment">Whoops, we lied.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Screen time</span><span class="points-box">26</span></div><span class="cheeky-comment">Guilty pleasures.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Too many toys</span><span class="points-box">18</span></div><span class="cheeky-comment">Toys everywhere!</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Bribe with snacks</span><span class="points-box">14</span></div><span class="cheeky-comment">Candy diplomacy.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Ignore expert advice</span><span class="points-box">10</span></div><span class="cheeky-comment">Because we know best.</span></div>
-        </div>
-        <div class="controls-footer">
-            <div class="team-pill"><span>TEAM MOM: <span class="mom-score-display" style="font-weight: 800;">0</span></span><div class="strikes-container"><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div></div><button class="assign-btn" onclick="assignRound('mom')">Assign to Mom</button></div>
-            <div class="round-bank"><span class="bank-label">Round Bank</span><span class="bank-display bank-value">0</span></div>
-            <div class="team-pill"><span>TEAM DAD: <span class="dad-score-display" style="font-weight: 800;">0</span></span><div class="strikes-container"><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div></div><button class="assign-btn" onclick="assignRound('dad')">Assign to Dad</button></div>
-        </div>
-    </div>
-    <button class="reset-btn" onclick="resetRound(this)">Reset Board</button>
-</div>
-
-<!-- Slide 8: Round 6 -->
-<div class="slide-container" id="slide8">
-    <div class="sakura-overlay"></div>
-    <h2 class="slide-title">Round 6: Bollywood Lullabies</h2>
-    <div class="content-area">
-        <div class="question-box">Question: Name a classic Bollywood lullaby parents sing</div>
-        <div class="feud-board">
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">“Lakdi Ki Kaathi”</span><span class="points-box">30</span></div><span class="cheeky-comment">Timeless tune.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">“Chanda Hai Tu...”</span><span class="points-box">25</span></div><span class="cheeky-comment">Moon + Sun combo.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">“Nani Teri Morni...”</span><span class="points-box">20</span></div><span class="cheeky-comment">Grandma’s favorite.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">“Nanhe Munne Bachche”</span><span class="points-box">15</span></div><span class="cheeky-comment">Tiny treasures.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">“So Ja Rajkumari”</span><span class="points-box">10</span></div><span class="cheeky-comment">Royal nap time.</span></div>
-        </div>
-        <div class="controls-footer">
-            <div class="team-pill"><span>TEAM MOM: <span class="mom-score-display" style="font-weight: 800;">0</span></span><div class="strikes-container"><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div></div><button class="assign-btn" onclick="assignRound('mom')">Assign to Mom</button></div>
-            <div class="round-bank"><span class="bank-label">Round Bank</span><span class="bank-display bank-value">0</span></div>
-            <div class="team-pill"><span>TEAM DAD: <span class="dad-score-display" style="font-weight: 800;">0</span></span><div class="strikes-container"><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div></div><button class="assign-btn" onclick="assignRound('dad')">Assign to Dad</button></div>
-        </div>
-    </div>
-    <button class="reset-btn" onclick="resetRound(this)">Reset Board</button>
-</div>
-
-<!-- Slide 9: Round 7 -->
-<div class="slide-container" id="slide9">
-    <div class="sakura-overlay"></div>
-    <h2 class="slide-title">Round 7: Desi Relative Advice</h2>
-    <div class="content-area">
-        <div class="question-box">Question: Name something Indian relatives always suggest</div>
-        <div class="feud-board">
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Oil massage</span><span class="points-box">34</span></div><span class="cheeky-comment">Tradition never fails.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Ajwain / jeera water</span><span class="points-box">26</span></div><span class="cheeky-comment">Ancient wisdom.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">“Put kajal”</span><span class="points-box">18</span></div><span class="cheeky-comment">Eyes on point.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Temple blessings</span><span class="points-box">12</span></div><span class="cheeky-comment">Divine intervention.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">“It worked for you”</span><span class="points-box">10</span></div><span class="cheeky-comment">Tried & tested.</span></div>
-        </div>
-        <div class="controls-footer">
-            <div class="team-pill"><span>TEAM MOM: <span class="mom-score-display" style="font-weight: 800;">0</span></span><div class="strikes-container"><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div></div><button class="assign-btn" onclick="assignRound('mom')">Assign to Mom</button></div>
-            <div class="round-bank"><span class="bank-label">Round Bank</span><span class="bank-display bank-value">0</span></div>
-            <div class="team-pill"><span>TEAM DAD: <span class="dad-score-display" style="font-weight: 800;">0</span></span><div class="strikes-container"><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div></div><button class="assign-btn" onclick="assignRound('dad')">Assign to Dad</button></div>
-        </div>
-    </div>
-    <button class="reset-btn" onclick="resetRound(this)">Reset Board</button>
-</div>
-
-<!-- Slide 10: Round 8 -->
-<div class="slide-container" id="slide10">
-    <div class="sakura-overlay"></div>
-    <h2 class="slide-title">Round 8: Desi Baby Nicknames</h2>
-    <div class="content-area">
-        <div class="question-box">Question: Name a common desi baby nickname</div>
-        <div class="feud-board">
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Babu</span><span class="points-box">30</span></div><span class="cheeky-comment">Tiny bundle.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Chotu</span><span class="points-box">25</span></div><span class="cheeky-comment">Little one.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Sonu</span><span class="points-box">20</span></div><span class="cheeky-comment">Sweetie pie.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Pinky</span><span class="points-box">15</span></div><span class="cheeky-comment">Rosy cheeks.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Pintu</span><span class="points-box">10</span></div><span class="cheeky-comment">Playful baby.</span></div>
-        </div>
-        <div class="controls-footer">
-            <div class="team-pill"><span>TEAM MOM: <span class="mom-score-display" style="font-weight: 800;">0</span></span><div class="strikes-container"><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div></div><button class="assign-btn" onclick="assignRound('mom')">Assign to Mom</button></div>
-            <div class="round-bank"><span class="bank-label">Round Bank</span><span class="bank-display bank-value">0</span></div>
-            <div class="team-pill"><span>TEAM DAD: <span class="dad-score-display" style="font-weight: 800;">0</span></span><div class="strikes-container"><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div></div><button class="assign-btn" onclick="assignRound('dad')">Assign to Dad</button></div>
-        </div>
-    </div>
-    <button class="reset-btn" onclick="resetRound(this)">Reset Board</button>
-</div>
-
-<!-- Slide 11: Round 9 -->
-<div class="slide-container" id="slide11">
-    <div class="sakura-overlay"></div>
-    <h2 class="slide-title">Round 9: Baby’s First Foods</h2>
-    <div class="content-area">
-        <div class="question-box">Question: Name a food that babies often try first</div>
-        <div class="feud-board">
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Rice cereal / khichdi</span><span class="points-box">35</span></div><span class="cheeky-comment">Classic starter.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Banana</span><span class="points-box">25</span></div><span class="cheeky-comment">Peelable happiness.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Apple puree</span><span class="points-box">15</span></div><span class="cheeky-comment">Tiny fruit bites.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Ragi / oats</span><span class="points-box">12</span></div><span class="cheeky-comment">Healthy beginnings.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Yogurt / curd</span><span class="points-box">8</span></div><span class="cheeky-comment">Creamy delight.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Sweet potato</span><span class="points-box">5</span></div><span class="cheeky-comment">Orange goodness.</span></div>
-        </div>
-        <div class="controls-footer">
-            <div class="team-pill"><span>TEAM MOM: <span class="mom-score-display" style="font-weight: 800;">0</span></span><div class="strikes-container"><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div></div><button class="assign-btn" onclick="assignRound('mom')">Assign to Mom</button></div>
-            <div class="round-bank"><span class="bank-label">Round Bank</span><span class="bank-display bank-value">0</span></div>
-            <div class="team-pill"><span>TEAM DAD: <span class="dad-score-display" style="font-weight: 800;">0</span></span><div class="strikes-container"><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div></div><button class="assign-btn" onclick="assignRound('dad')">Assign to Dad</button></div>
-        </div>
-    </div>
-    <button class="reset-btn" onclick="resetRound(this)">Reset Board</button>
-</div>
-
-<!-- Slide 12: Round 10 -->
-<div class="slide-container" id="slide12">
-    <div class="sakura-overlay"></div>
-    <h2 class="slide-title">Round 10: Baby Mischief</h2>
-    <div class="content-area">
-        <div class="question-box">Question: Name something babies do that drives parents crazy</div>
-        <div class="feud-board">
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Throw food</span><span class="points-box">35</span></div><span class="cheeky-comment">Flying snacks!</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Cry randomly</span><span class="points-box">25</span></div><span class="cheeky-comment">Surprise tears.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Pull hair / scratch</span><span class="points-box">15</span></div><span class="cheeky-comment">Tiny ninja moves.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Knock over things</span><span class="points-box">12</span></div><span class="cheeky-comment">Mini demolition crew.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Grab everything</span><span class="points-box">8</span></div><span class="cheeky-comment">Sticky fingers.</span></div>
-            <div class="feud-tile" onclick="toggleTile(this)"><div class="tile-cover"></div><div class="tile-content"><span class="answer-text">Bite / chew toys</span><span class="points-box">5</span></div><span class="cheeky-comment">Teething attack.</span></div>
-        </div>
-        <div class="controls-footer">
-            <div class="team-pill"><span>TEAM MOM: <span class="mom-score-display" style="font-weight: 800;">0</span></span><div class="strikes-container"><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div></div><button class="assign-btn" onclick="assignRound('mom')">Assign to Mom</button></div>
-            <div class="round-bank"><span class="bank-label">Round Bank</span><span class="bank-display bank-value">0</span></div>
-            <div class="team-pill"><span>TEAM DAD: <span class="dad-score-display" style="font-weight: 800;">0</span></span><div class="strikes-container"><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div><div class="strike-x" onclick="toggleStrike(this)">X</div></div><button class="assign-btn" onclick="assignRound('dad')">Assign to Dad</button></div>
-        </div>
-    </div>
-    <button class="reset-btn" onclick="resetRound(this)">Reset Board</button>
-</div>
-
-<!-- Slide 13: Scoreboard -->
-<div class="slide-container" id="slideFinal">
-    <div class="flower-bg flower-tl"></div>
-    <div class="flower-bg flower-br"></div>
-    <div class="flower-bg flower-tr"></div>
-    <h2 class="slide-title">Final Standings</h2>
-    <div class="content-area" style="flex-direction: row; gap: 60px; align-items: center; justify-content: center;">
-        <div class="score-box">
-            <p class="team-name-big">Team Mom</p>
-            <p class="score-val mom-score-display">0</p>
-        </div>
-        <div style="font-family: 'Playfair Display'; font-size: 70px; color: var(--gold-accent); font-weight: 700;">VS</div>
-        <div class="score-box">
-            <p class="team-name-big">Team Dad</p>
-            <p class="score-val dad-score-display">0</p>
-        </div>
-    </div>
-    <span class="reset-btn" onclick="resetThisBoard(this)">Reset Game</span>
-</div>
 
 </body>
 </html>
