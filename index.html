@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baby Feud</title>
+    <title>Baby Feud - Optimized Tiles</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -15,6 +15,7 @@
             --deep-cherry: #8E244D;
             --gold-accent: #D4AF37;
             --text-dark: #4A4A4A;
+            --strike-red: #ff4d4d;
         }
 
         body {
@@ -22,8 +23,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 50px;
-            padding: 40px 0;
+            gap: 40px;
+            padding: 20px 0;
             font-family: 'Montserrat', sans-serif;
         }
 
@@ -34,45 +35,46 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            border: 12px solid white;
+            border: 10px solid white;
             box-shadow: 0 20px 50px rgba(0,0,0,0.1);
             overflow: hidden;
         }
 
         .slide-title {
             font-family: 'Playfair Display', serif;
-            font-size: 48px;
+            font-size: 42px;
             color: var(--deep-cherry);
-            margin: 40px 0 10px 60px;
+            margin: 30px 0 5px 60px;
         }
 
-        .content-area { padding: 0 60px; flex-grow: 1; }
+        .content-area { padding: 0 60px; flex-grow: 1; display: flex; flex-direction: column; }
 
         .question-box {
             background: rgba(255,255,255,0.8);
-            border-left: 8px solid var(--deep-cherry);
-            padding: 15px 30px;
-            margin-bottom: 25px;
-            font-size: 26px;
+            border-left: 6px solid var(--deep-cherry);
+            padding: 12px 25px;
+            margin-bottom: 15px;
+            font-size: 22px;
             font-style: italic;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
-        /* --- THE FIXED GRID & CARD GAP --- */
+        /* --- NARROWER TILES --- */
         .feud-board {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px; /* Adjust this value to increase/decrease space between cards */
+            gap: 15px; /* Tighter gap */
         }
 
         .feud-tile {
             background: white;
-            border-radius: 25px;
-            height: 110px;
+            border-radius: 15px; /* Slightly less round for the narrower look */
+            height: 75px; /* Reduced from 100px/110px */
             display: flex;
             position: relative;
             cursor: pointer;
             overflow: hidden;
-            border: 4px solid var(--sakura-pink);
+            border: 3px solid var(--sakura-pink);
         }
 
         .tile-cover {
@@ -81,77 +83,87 @@
             background: var(--petal-gradient);
             z-index: 5;
             display: flex; align-items: center; justify-content: center;
-            font-weight: 800; font-size: 32px; color: white;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 800; font-size: 28px; color: white;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .feud-tile.revealed .tile-cover { transform: translateY(-100%); }
 
         .tile-content {
             width: 100%;
-            padding: 0 30px;
+            padding: 0 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .ans-main {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+        .ans-main { display: flex; flex-direction: column; justify-content: center; }
 
         .answer-text {
-            font-size: 24px;
+            font-size: 20px; /* Scaled down */
             font-weight: 800;
             color: var(--deep-cherry);
             text-transform: uppercase;
-            line-height: 1.2;
+            line-height: 1;
         }
 
         .cheeky-comment {
             font-family: 'Dancing Script', cursive;
-            font-size: 20px;
+            font-size: 17px; /* Scaled down */
             color: var(--gold-accent);
-            margin-top: 2px;
+            margin-top: 1px;
         }
 
         .points-circle {
             background: var(--deep-cherry);
             color: white;
-            width: 65px;
-            height: 65px;
+            width: 45px; height: 45px; /* Scaled down */
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 26px;
-            font-weight: 800;
-            flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; font-weight: 800;
         }
 
-        /* --- FOOTER CONTROLS --- */
+        /* --- HUD CONTROLS --- */
         .controls-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-top: auto;
-            padding-bottom: 30px;
+            padding-bottom: 20px;
             border-top: 2px dashed var(--sakura-pink);
-            padding-top: 20px;
+            padding-top: 15px;
         }
 
         .team-pill {
             background: white; border: 2px solid var(--sakura-pink);
-            padding: 15px 30px; border-radius: 20px; text-align: center;
-            min-width: 250px;
+            padding: 10px 20px; border-radius: 15px;
+            min-width: 260px; display: flex; flex-direction: column; gap: 8px;
+            align-items: center;
         }
 
-        .bank-box {
+        .team-label { font-size: 14px; font-weight: 800; color: var(--text-dark); }
+        .score-val { font-size: 24px; color: var(--deep-cherry); }
+
+        .round-bank {
             background: var(--deep-cherry); color: white;
-            padding: 15px 50px; border-radius: 15px; text-align: center;
+            padding: 8px 40px; border-radius: 12px; text-align: center;
         }
-        .bank-val { font-size: 36px; font-weight: 800; display: block; }
+        .bank-val { font-size: 32px; font-weight: 800; display: block; }
+
+        .strikes-container { display: flex; gap: 8px; }
+        .strike-x {
+            width: 32px; height: 32px; border: 2px solid #eee; border-radius: 6px;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+            font-size: 18px; color: #f0f0f0; background: white;
+        }
+        .strike-x.active { background: var(--strike-red); color: white; border-color: #c00; font-weight: bold; }
+
+        .assign-btn {
+            background: var(--gold-accent); color: white; border: none;
+            padding: 6px 12px; border-radius: 15px; font-weight: 700; cursor: pointer; font-size: 12px;
+        }
+
+        .reset-btn { position: absolute; bottom: 10px; right: 10px; font-size: 10px; opacity: 0.3; cursor: pointer; border: none; background: none; }
     </style>
 </head>
 <body>
@@ -166,62 +178,131 @@
             answers: [
                 { text: "Is this normal?", pts: 35, comment: "Spoiler: Nothing is normal anymore." },
                 { text: "Sleep regressions", pts: 24, comment: "Why sleep when baby doesn't?" },
-                { text: "Baby poop colors", pts: 20, comment: "Not a rainbow, sadly." },
-                { text: "Growth spurts", pts: 16, comment: "More food, less sleep." },
+                { text: "Poop colors", pts: 20, comment: "The forbidden rainbow." },
+                { text: "Growth spurts", pts: 16, comment: "Feed. Sleep. Repeat." },
                 { text: "Teething timelines", pts: 10, comment: "Tiny teeth, big drama." }
+            ]
+        },
+        {
+            title: "Round 2: The Shopping List",
+            question: "Name something new parents constantly buy",
+            answers: [
+                { text: "Diapers", pts: 70, comment: "Endless boxes!" },
+                { text: "Wipes", pts: 12, comment: "Keep 'em handy." },
+                { text: "Baby Clothes", pts: 8, comment: "They outgrow them in a week." },
+                { text: "Coffee", pts: 5, comment: "Fuel for survival." },
+                { text: "Take-out", pts: 5, comment: "Who has time to cook?" }
+            ]
+        },
+        {
+            title: "Round 7: Desi Relative Advice",
+            question: "Name something Indian relatives always suggest",
+            answers: [
+                { text: "Oil massage", pts: 34, comment: "Champi solves everything." },
+                { text: "Ajwain Water", pts: 26, comment: "Ancient tummy logic." },
+                { text: "Put Kajal", pts: 18, comment: "Buri nazar protection." },
+                { text: "More Layers", pts: 12, comment: "Is the baby cold? Yes." },
+                { text: "Eat more Ghee", pts: 10, comment: "The solution to life." }
             ]
         }
     ];
 
+    let globalScores = { mom: 0, dad: 0 };
     let currentBank = 0;
-    const boardContainer = document.getElementById('game-boards');
 
-    // For loop generates each round
-    for (let i = 0; i < rounds.length; i++) {
-        const round = rounds[i];
-        let tilesHtml = '';
+    function renderGame() {
+        const boardContainer = document.getElementById('game-boards');
+        boardContainer.innerHTML = ''; 
 
-        // Nested for loop generates each card
-        for (let j = 0; j < round.answers.length; j++) {
-            const a = round.answers[j];
-            tilesHtml += `
-                <div class="feud-tile" onclick="revealTile(this, ${a.pts})">
-                    <div class="tile-cover">${j + 1}</div>
-                    <div class="tile-content">
-                        <div class="ans-main">
-                            <span class="answer-text">${a.text}</span>
-                            <span class="cheeky-comment">"${a.comment}"</span>
+        rounds.forEach((round, rIdx) => {
+            let tilesHtml = '';
+            round.answers.forEach((a, aIdx) => {
+                tilesHtml += `
+                    <div class="feud-tile" onclick="revealTile(this, ${a.pts})">
+                        <div class="tile-cover">${aIdx + 1}</div>
+                        <div class="tile-content">
+                            <div class="ans-main">
+                                <span class="answer-text">${a.text}</span>
+                                <span class="cheeky-comment">"${a.comment}"</span>
+                            </div>
+                            <div class="points-circle">${a.pts}</div>
                         </div>
-                        <div class="points-circle">${a.pts}</div>
+                    </div>`;
+            });
+
+            boardContainer.innerHTML += `
+                <div class="slide-container">
+                    <h2 class="slide-title">${round.title}</h2>
+                    <div class="content-area">
+                        <div class="question-box">Question: ${round.question}</div>
+                        <div class="feud-board">${tilesHtml}</div>
+                        
+                        <div class="controls-footer">
+                            <div class="team-pill">
+                                <span class="team-label">TEAM MOM: <span class="mom-score-display score-val">0</span></span>
+                                <div class="strikes-container">
+                                    <div class="strike-x" onclick="toggleStrike(this)">X</div>
+                                    <div class="strike-x" onclick="toggleStrike(this)">X</div>
+                                    <div class="strike-x" onclick="toggleStrike(this)">X</div>
+                                </div>
+                                <button class="assign-btn" onclick="assignPoints('mom')">Add Bank to Mom</button>
+                            </div>
+
+                            <div class="round-bank">
+                                <small>BANK</small>
+                                <span class="bank-val bank-display">0</span>
+                            </div>
+
+                            <div class="team-pill">
+                                <span class="team-label">TEAM DAD: <span class="dad-score-display score-val">0</span></span>
+                                <div class="strikes-container">
+                                    <div class="strike-x" onclick="toggleStrike(this)">X</div>
+                                    <div class="strike-x" onclick="toggleStrike(this)">X</div>
+                                    <div class="strike-x" onclick="toggleStrike(this)">X</div>
+                                </div>
+                                <button class="assign-btn" onclick="assignPoints('dad')">Add Bank to Dad</button>
+                            </div>
+                        </div>
                     </div>
+                    <button class="reset-btn" onclick="resetBoard(this)">Reset Board</button>
                 </div>`;
-        }
+        });
+        updateDisplays();
+    }
 
-        boardContainer.innerHTML += `
-            <div class="slide-container">
-                <h2 class="slide-title">${round.title}</h2>
-                <div class="content-area">
-                    <div class="question-box">Question: ${round.question}</div>
-                    <div class="feud-board">${tilesHtml}</div>
-                    <div class="controls-footer">
-                        <div class="team-pill">MOM: <span id="mom-score">0</span></div>
-                        <div class="bank-box">
-                            <small>BANK</small>
-                            <span class="bank-val" id="bank-val">0</span>
-                        </div>
-                        <div class="team-pill">DAD: <span id="dad-score">0</span></div>
-                    </div>
-                </div>
-            </div>`;
+    function updateDisplays() {
+        document.querySelectorAll('.mom-score-display').forEach(el => el.innerText = globalScores.mom);
+        document.querySelectorAll('.dad-score-display').forEach(el => el.innerText = globalScores.dad);
+        document.querySelectorAll('.bank-display').forEach(el => el.innerText = currentBank);
     }
 
     function revealTile(el, pts) {
         if (!el.classList.contains('revealed')) {
             el.classList.add('revealed');
             currentBank += pts;
-            document.getElementById('bank-val').innerText = currentBank;
+            updateDisplays();
         }
     }
+
+    function toggleStrike(el) {
+        el.classList.toggle('active');
+    }
+
+    function assignPoints(team) {
+        globalScores[team] += currentBank;
+        currentBank = 0;
+        updateDisplays();
+    }
+
+    function resetBoard(btn) {
+        const slide = btn.closest('.slide-container');
+        currentBank = 0;
+        slide.querySelectorAll('.feud-tile').forEach(t => t.classList.remove('revealed'));
+        slide.querySelectorAll('.strike-x').forEach(x => x.classList.remove('active'));
+        updateDisplays();
+    }
+
+    renderGame();
 </script>
 
 </body>
