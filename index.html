@@ -112,12 +112,12 @@
         .feud-tile {
             background: white;
             border-radius: 12px;
-            height: 65px;
+            height: 80px; /* Taller to accommodate the stacked answer and comment */
             display: flex;
             position: relative;
             cursor: pointer;
             overflow: hidden;
-            border: 2px solid var(--sakura-pink);
+            border: 3px solid var(--sakura-pink);
         }
 
         .tile-cover {
@@ -138,8 +138,31 @@
             align-items: center;
         }
 
-        .answer-text { font-size: 18px; font-weight: 800; color: var(--deep-cherry); text-transform: uppercase; }
-        .cheeky-comment { font-family: 'Dancing Script', cursive; font-size: 16px; color: var(--gold-accent); }
+        /* TEXT STACKING - Moves comment underneath the answer */
+        .ans-main { 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            gap: 2px; 
+        }
+
+        /* ANSWER TEXT - Increased size for readability */
+        .answer-text { 
+            font-size: 24px; 
+            font-weight: 800; 
+            color: var(--deep-cherry); 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+        }
+
+        /* CHEEKY COMMENT - Switched to Montserrat for better legibility and increased size */
+        .cheeky-comment { 
+            font-family: 'Montserrat', sans-serif; 
+            font-size: 16px; 
+            font-weight: 600;
+            font-style: italic;
+            color: var(--gold-accent); 
+        }
         .points-circle {
             background: var(--deep-cherry); color: white;
             width: 40px; height: 40px; border-radius: 50%;
